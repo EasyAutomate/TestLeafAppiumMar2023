@@ -1,0 +1,5 @@
+NFR
+1. Battery drain %
+2. Phone interuption
+3. Internal Storage full
+4. Ram almost full
