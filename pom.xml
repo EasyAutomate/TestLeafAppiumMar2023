@@ -4,13 +4,31 @@
   <artifactId>TestLeafAppiumMar2023</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
-		<!-- https://mvnrepository.com/artifact/io.appium/java-client -->
-		<dependency>
-			<groupId>io.appium</groupId>
-			<artifactId>java-client</artifactId>
-			<version>8.3.0</version>
-		</dependency>
-	</dependencies>
+      <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+      <dependency>
+          <groupId>io.appium</groupId>
+          <artifactId>java-client</artifactId>
+          <version>8.3.0</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+      <dependency>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+          <version>2.11.0</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support -->
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-support</artifactId>
+          <version>4.8.1</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+      <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+          <version>7.5</version>
+      </dependency>
+  </dependencies>
 	<build>
 		<plugins>
 			<plugin>
