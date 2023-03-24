@@ -1,5 +1,5 @@
 package wrappers;
 
-public class GenericWrappers extends AndroidWebWrappers {
+public class GenericWrappers extends IosWebWrappers {
 
 }
