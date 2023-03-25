@@ -77,16 +77,14 @@ Maven project
 
 src/main/java
 	wrappers
-		GenericWrappers.java
-		ProjectSpecificWrappers.java extends GenericWrappers
-		@Given("I launch the application")
-			public void bm() {
-			launchApp(....);
-			}
+		GenericWrappers.java extends AbstractTestNgCucumberTests
+		ThreadLocal ....
+
+		during driver initalize --> set driver
+		during call of driver --> get driver
 	pages
 		LoginPage.java extends GenericWrappers
-			public LoginPage(AppiumDriver driver) {
-			this.driver=driver;
+			public LoginPage() {
 			eleIsDisplayed(webelementOfUN);
 			}
 			@Given("I enter the username as {string}")
@@ -109,8 +107,7 @@ src/main/java
 				return new HomePage(driver);
 			}
 		HomePage.java
-			public HomePage(AppiumDriver driver) {
-			this.driver=driver;
+			public HomePage() {
 			eleIsDisplayed(webelement);
 			}
 			@Given("Verify the home page is displayed")
@@ -119,25 +116,25 @@ src/main/java
 			}
 src/main/resources
 src/test/java
-	
+	runner
+		TestRunner.java extends GenericWrappers
+			@CucumberOption(features={"src/test/resources/features"},
+			glue="pages")
+
+			public class TestRunner() {
+			@BeforeMethod
+			public void bm() {
+			launchApp(....);
+			}
+			}
 src/test/resources
 	features
 		Login.feature
 		Feature: Login funtionality
 
 		Scenario: Successful login
-		Given I launch the application
 		When I enter the username as "lokesh"
 		And I enter the password as "password"
 		And I click the login button
 		Then Verify the home page is displayed
-
-
-
-
-
-
-
-
-
 
