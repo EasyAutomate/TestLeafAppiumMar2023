@@ -1,0 +1,143 @@
+Suite
+	Scenario
+		Test case
+			Steps
+
+Suite
+	Test
+		Class
+			Method
+
+Project
+	Feature
+		Scenario
+			Steps
+
+Cucumber
+
+Project --> Features --> Steps
+
+Steps/Keywords --> Step Def --> Add automation code and implement the steps def
+
+Gherkin keywords
+Given --> Pre condition
+When  --> Step
+Then --> Expected result
+And --> supporting keyword
+But --> Negative case expected result
+* --> Wild card (any)
+
+Cucumber
+
+Maven
+src/main/java
+	stepDef
+		public AppiumDriver driver;
+		@Given("I launch the application") 
+		public void app() {
+		driver=.........
+		}
+
+		@Given("I enter the username as {string}") 
+		public void un(String un) {
+		driver.findEle......().sendKeys(un);
+		}
+
+		@Given("I enter the password as {string}") 
+		public void pwd(String pwd) {
+		driver.findEle......().sendKeys(pwd);
+		}
+src/main/resources
+src/test/java
+	runner
+		......... code to run the feature file
+src/test/resources
+	features
+		Login.feature
+		Feature: Login funtionality
+
+		Scenario: Successful login
+		Given I launch the application
+		When I enter the username as "lokesh"
+		And I enter the password as "password"
+		And I click the login button
+		Then Verify the home page is displayed
+
+
+Cucumber with Page object model and TestNG
+
+POM Rules
+1. Create a resusable compenent / methods
+2. Every page should be a separate class
+3. Every action should be a separate method in each class
+4. Every method should land to the page post completion / should have a return type
+5. Verify the page landed (in contructor validate the page)
+
+Maven project
+
+src/main/java
+	wrappers
+		GenericWrappers.java
+		ProjectSpecificWrappers.java extends GenericWrappers
+		@Given("I launch the application")
+			public void bm() {
+			launchApp(....);
+			}
+	pages
+		LoginPage.java extends GenericWrappers
+			public LoginPage(AppiumDriver driver) {
+			this.driver=driver;
+			eleIsDisplayed(webelementOfUN);
+			}
+			@Given("I enter the username as {string}")
+			public LoginPage enterUserName(String userName) {
+				enterData(webelement,userName);
+				return this;
+			}
+			@Given("I enter the password as {string}")
+			public LoginPage enterPassword(String password) {
+				enterData(webelement,password);
+				return this;
+			}
+			public LoginPage clickLoginForFailure() {
+				click(webelement);
+				return this;
+			}
+			@Given("I click the login button")
+			public HomePage clickLogin() {
+				click(webelement);
+				return new HomePage(driver);
+			}
+		HomePage.java
+			public HomePage(AppiumDriver driver) {
+			this.driver=driver;
+			eleIsDisplayed(webelement);
+			}
+			@Given("Verify the home page is displayed")
+			public void verHP(){
+			....
+			}
+src/main/resources
+src/test/java
+	
+src/test/resources
+	features
+		Login.feature
+		Feature: Login funtionality
+
+		Scenario: Successful login
+		Given I launch the application
+		When I enter the username as "lokesh"
+		And I enter the password as "password"
+		And I click the login button
+		Then Verify the home page is displayed
+
+
+
+
+
+
+
+
+
+

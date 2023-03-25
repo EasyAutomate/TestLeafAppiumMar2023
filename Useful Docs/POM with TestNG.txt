@@ -1,0 +1,61 @@
+Page object model with TestNG
+
+1. Create a resusable compenent / methods
+2. Every page should be a separate class
+3. Every action should be a separate method in each class
+4. Every method should land to the page post completion / should have a return type
+5. Verify the page landed (in contructor validate the page)
+
+Maven project
+
+src/main/java
+	wrappers
+		GenericWrappers.java
+		ProjectSpecificWrappers.java extends GenericWrappers
+		@BeforeMethod
+			public void bm() {
+			launchApp(....);
+			}
+	pages
+		LoginPage.java extends GenericWrappers
+			public LoginPage(AppiumDriver driver) {
+			this.driver=driver;
+			eleIsDisplayed(webelementOfUN);
+			}
+			public LoginPage enterUserName(String userName) {
+				enterData(webelement,userName);
+				return this;
+			}
+			public LoginPage enterPassword(String password) {
+				enterData(webelement,password);
+				return this;
+			}
+			public LoginPage clickLoginForFailure() {
+				click(webelement);
+				return this;
+			}
+			public HomePage clickLogin() {
+				click(webelement);
+				return new HomePage(driver);
+			}
+		HomePage.java
+			public HomePage(AppiumDriver driver) {
+			this.driver=driver;
+			eleIsDisplayed(webelement);
+			}
+src/main/resources
+src/test/java
+	testcases
+		TC001.java extends ProjectSpecificWrappers
+			@Test
+			public void runCode() {
+			new LoginPage(driver).enterUserName(...).enterPassword(....).clickLogin();
+			}
+		}
+		TC002.java extends ProjectSpecificWrappers
+			@Test
+			public void runCode() {
+			new LoginPage(driver).enterUserName(...).enterPassword(....).clickLogin();
+			}
+		}
+src/test/resources
