@@ -8,13 +8,13 @@ public class IosNativeWrappers extends AndroidWebWrappers {
 
     public boolean launchIosApp(String deviceName, String udid, String xcodeOrgId, String bundleId, String app) {
         return launchApp("iOS", deviceName, udid, "", "", "XCUITest", "", "", xcodeOrgId, "iPhone Developer", bundleId,
-                app, "", "");
+                app, "", "", "");
     }
 
     public boolean launchIosAppInParallel(String deviceName, String udid, String xcodeOrgId, String bundleId,
-                                          String app, String wdaLocalPort) {
+                                          String app, String wdaLocalPort, String webkitDebugProxyPort) {
         return launchApp("iOS", deviceName, udid, "", "", "XCUITest", "", "", xcodeOrgId, "iPhone Developer", bundleId,
-                app, "", wdaLocalPort);
+                app, "", wdaLocalPort, webkitDebugProxyPort);
     }
 
     public boolean chooseNextOptionInPickerWheel(String locator, String locatorValue) {

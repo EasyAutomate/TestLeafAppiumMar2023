@@ -15,7 +15,7 @@ public class CommonWebWrappers extends CommonNativeWrappers {
 
     // To launch the mobile web browser
     public boolean launchBrowser(String platformName, String browserName, String deviceName, String URL, String udid,
-                                 String chromeDriverPort, String wdaLocalPort, String mjpegServerPort, String webkitDebugProxyPort) {
+                                 String chromeDriverPort, String wdaLocalPort, String mjpegServerPort, String webkitDebugProxyPort, String platformVersion) {
         try {
             DesiredCapabilities dc = new DesiredCapabilities();
             // To pass the Unique Device Identifier
@@ -41,6 +41,9 @@ public class CommonWebWrappers extends CommonNativeWrappers {
             if (platformName.equalsIgnoreCase("Android")) {
                 // Comment the below line based on need
                 dc.setCapability("autoGrantPermissions", true);
+                if (!platformVersion.equals("")) {
+                    dc.setCapability("platformVersion", platformVersion);
+                }
                 driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), dc);
             } else if (platformName.equalsIgnoreCase("iOS")) {
                 if (!webkitDebugProxyPort.equals(""))
@@ -50,6 +53,9 @@ public class CommonWebWrappers extends CommonNativeWrappers {
                 dc.setCapability("startIWDP", true);
                 dc.setCapability("nativeWebTap", true);
                 dc.setCapability("automationName", "XCUITest");
+                if (!platformVersion.equals("")) {
+                    dc.setCapability("safari:platformVersion", platformVersion);
+                }
                 driver = new IOSDriver(new URL("http://0.0.0.0:4723/wd/hub"), dc);
             }
             driver.get(URL);

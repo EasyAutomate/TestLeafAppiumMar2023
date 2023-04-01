@@ -14,13 +14,13 @@ public class AndroidNativeWrappers extends CommonWebWrappers {
     public boolean launchAndroidApp(String deviceName, String appPackage, String appActivity, String automationName,
                                     String app) {
         return launchApp("Android", deviceName, "", appPackage, appActivity, automationName, "", "", "", "", "", app,
-                "", "");
+                "", "", "");
     }
 
     public boolean launchAndroidAppInParallel(String deviceName, String udid, String appPackage, String appActivity,
                                               String automationName, String chromeDriverPort, String mjpegServerPort, String systemPort, String app) {
         return launchApp("Android", deviceName, udid, appPackage, appActivity, automationName, chromeDriverPort,
-                systemPort, "", "", "", app, mjpegServerPort, "");
+                systemPort, "", "", "", app, mjpegServerPort, "", "");
     }
 
     public boolean startAnAppUsingActivity(String appPackage, String appActivity) {

@@ -4,19 +4,19 @@ import io.appium.java_client.remote.SupportsContextSwitching;
 
 public class IosWebWrappers extends IosNativeWrappers {
 
-    public boolean launchSafariBrowser(String deviceName, String URL, String udid) {
-        return launchBrowser("iOS", "Safari", deviceName, URL, udid, "", "", "", "");
+    public boolean launchSafariBrowser(String deviceName, String URL, String udid, String platformVersion) {
+        return launchBrowser("iOS", "Safari", deviceName, URL, udid, "", "", "", "", platformVersion);
     }
 
     public boolean launchSafariBrowserInParallel(String deviceName, String URL, String udid, String wdaLocalPort,
-                                                 String webkitDebugProxyPort) {
-        return launchBrowser("iOS", "Safari", deviceName, URL, udid, "", wdaLocalPort, "", webkitDebugProxyPort);
+                                                 String webkitDebugProxyPort, String platformVersion) {
+        return launchBrowser("iOS", "Safari", deviceName, URL, udid, "", wdaLocalPort, "", webkitDebugProxyPort, platformVersion);
     }
 
     public boolean deleteSafariCookies() {
         stopRunningApp("com.apple.Preferences");
         switchToAnotherApp("com.apple.Preferences");
-        switchNativeview();
+        switchNativeView();
         swipeDownInApp();
         enterValue(getWebElement(Locators.XPATH.toString(), "//*[@label='Search']"), "Safari");
         try {
@@ -40,7 +40,7 @@ public class IosWebWrappers extends IosNativeWrappers {
         boolean isNative = ((SupportsContextSwitching) driver).getContext().equalsIgnoreCase("NATIVE_APP");
         String context = ((SupportsContextSwitching) driver).getContext();
         if (!isNative) {
-            switchNativeview();
+            switchNativeView();
         }
         if (isKeyboardShown()) {
             click(getWebElement(Locators.NAME.toString(), name));
@@ -52,12 +52,18 @@ public class IosWebWrappers extends IosNativeWrappers {
 
     public void clickGivenKeyboardButtonInIosByAccessibilityId(String accessId) {
         boolean isNative = ((SupportsContextSwitching) driver).getContext().equalsIgnoreCase("NATIVE_APP");
+        System.out.println(isNative);
         String context = ((SupportsContextSwitching) driver).getContext();
         if (!isNative) {
-            switchNativeview();
+            switchNativeView();
         }
         if (isKeyboardShown()) {
-            click(getWebElement(Locators.ACCESSIBILITY_ID.toString(), accessId));
+            try {
+                click(getWebElement(Locators.ACCESSIBILITY_ID.toString(), accessId));
+            } catch (Exception e) {
+                System.err.println("Clicked the element via catch block");
+                getWebElement(Locators.ACCESSIBILITY_ID.toString(), accessId).click();
+            }
         }
         if (!isNative) {
             switchContext(context);
@@ -68,7 +74,7 @@ public class IosWebWrappers extends IosNativeWrappers {
         boolean isNative = ((SupportsContextSwitching) driver).getContext().equalsIgnoreCase("NATIVE_APP");
         String context = ((SupportsContextSwitching) driver).getContext();
         if (!isNative) {
-            switchNativeview();
+            switchNativeView();
         }
         if (isKeyboardShown()) {
             click(getWebElement(Locators.XPATH.toString(), xPath));

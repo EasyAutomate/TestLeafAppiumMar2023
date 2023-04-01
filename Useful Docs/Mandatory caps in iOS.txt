@@ -1,0 +1,15 @@
+Appium
+
+Mandatory caps if APP/IPA file is available
+
+platformName --> iOS
+deviceName --> Any (Real Device) / Actual value (Simulators)
+app --> Absolute Path of my app/ipa in my local machine
+automationName --> XCUITest
+
+Mandatory caps if APP/IPA file is not available i.e., application is installed in device
+
+platformName --> iOS
+deviceName --> Any (Real Device) / Actual value (Simulators)
+bundleId --> Bundle Identifier given by developer
+automationName --> XCUITest

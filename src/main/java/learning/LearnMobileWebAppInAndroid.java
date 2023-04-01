@@ -3,7 +3,7 @@ package learning;
 import org.testng.annotations.Test;
 import wrappers.GenericWrappers;
 
-public class LearnWebApps extends GenericWrappers {
+public class LearnMobileWebAppInAndroid extends GenericWrappers {
 
     @Test
     public void runCode() {

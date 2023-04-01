@@ -10,3 +10,4 @@ release.properties
 */.DS_STORE/*
 /bin/
 /.idea/*
+.DS_Store
